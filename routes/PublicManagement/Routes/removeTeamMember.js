@@ -5,7 +5,12 @@ const Member = require("../../../models/MemberModel");
 
 router.post('/', async (req, res) => {
   const {teamID, memberID} = req.body;
-  const 
-})
+  const team = await Team.findById(teamID);
+  await team.Members.remove(memberID)
+  await team.save();
+  const member = await Member.findById(memberID);
+  await member.remove();
+  res.send("removed");
+});
 
 module.exports = router;

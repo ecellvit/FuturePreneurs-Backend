@@ -6,6 +6,7 @@ router.use("/createUser", require('./Routes/createUser'));
 router.use("/createTeam", require('./Routes/createTeam'));
 router.use('/addMember', require('./Routes/addMember'));
 router.use('/getAllTeams', require('./Routes/getAllTeams'));
+router.use('/removeTeamMember', require('./Routes/removeTeamMember'));
 
 
 router.use('/getTeamById', require('./Routes/getTeamById'));
