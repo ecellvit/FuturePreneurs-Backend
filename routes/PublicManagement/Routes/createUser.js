@@ -2,9 +2,9 @@ const express = require("express");
 const User = require('../../../models/UserModel');
 const router = express.Router();
 
-router.post('/', async(req, res) => {
+router.post('/', async (req, res) => {
   const { email, name, photoURL } = req.body;
-  var user = await User.findObe({email : email});
+  var user = await User.findOne({email : email});
   if (user != null){
     res.sendStatus(404);
   }
@@ -14,6 +14,5 @@ router.post('/', async(req, res) => {
     res.json(user);
   }
 });
-
 
 module.exports = router;

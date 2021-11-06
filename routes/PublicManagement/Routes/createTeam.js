@@ -6,7 +6,7 @@ const Member = require("../../../models/MemberModel");
 
 router.post('/', async (req, res) => {
   const {teamName, creatorID} = req.body;
-  var team = await Team.findObe({TeamName : teamName});
+  var team = await Team.findOne({TeamName : teamName});
 
   if (team != null){
     res.sendStatus(450);
@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
     const Leader = new Member({User : user, isLeader : true, isApproved : true});
 
     team = new Team({TeamName : teamName, Leader : Leader});
+    team.addMember(Leader, true);
     var promiseOne = Leader.save();
     var promiseTwo = team.save();
     Promise.all([promiseOne, promiseTwo]).then(console.log("team Saved"));
