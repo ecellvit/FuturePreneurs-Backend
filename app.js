@@ -13,6 +13,8 @@ const fs = require('fs');
 // });
 database();
 
+app.use('/api/public', require("./routes/PublicManagement/public"));
+
 
 
 server.listen("2000", () => console.log('Server running on port 2000'));

@@ -1,21 +1,26 @@
 const mongoose = require('mongoose');
 const User = require('./UserModel')
 const MemberSchema = mongoose.Schema({
-  User : {type : mongoose.Schema.Types.ObjectId, ref : 'User'},
+  User : User.schema,
   isLeader : false,
   isApproved : false,
   teamID : {type : mongoose.Schema.Types.ObjectId, ref : "Team"}
 }, {collection : "Member"});
 
-MemberSchema.methods.makeLeader = function(){
+MemberSchema.methods.makeLeader = async function(){
   this.isLeader = true;
-  this.save();
+  await this.save();
 };
 
-MemberSchema.methods.approveMember = function(){
+MemberSchema.methods.approveMember = async function(){
   this.isApproved = true;
-  this.save();
+  await this.save();
 };
+
+MemberSchema.methods.addTeam = async function(teamID){
+  this.teamID = teamID;
+  await this.save();
+}
 
 const Member = mongoose.model("Member", MemberSchema);
 module.exports = Member;

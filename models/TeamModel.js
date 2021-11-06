@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const TeamSchema = mongoose.Schema({
   TeamName : String,
-  Leader : {type : mongoose.Schema.Types.ObjectId, ref : "Member"};
-  Members : [{type : mongoose.Schema.Types.ObjectId, ref : "Member"}];
+  Leader : {type : mongoose.Schema.Types.ObjectId, ref : "Member"},
+  Members : [{type : mongoose.Schema.Types.ObjectId, ref : "Member"}],
   Points : 0,
 },  {collection : "Teams"});
 
