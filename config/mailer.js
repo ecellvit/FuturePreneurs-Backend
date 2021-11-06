@@ -36,7 +36,7 @@ const mailer = async function (target,subject,htmlString){
     from : "chobisa.henit@gmail.com",
     subject : subject,
     generateTextFromHTML: true,
-    html : "htmlString"
+    html : htmlString
   }
   transports.sendMail(mailOptions, (error, response) => {
     error ? console.log(error) : console.log(response);

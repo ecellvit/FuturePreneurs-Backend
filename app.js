@@ -6,6 +6,11 @@ const http = require("http");
 const database = require("./config/database");
 const server = http.createServer(app);
 const mailer = require("./config/mailer");
+const fs = require('fs');
+// fs.readFile('./test.html', (err, html) => {
+//   var htmlString = html.toString();
+//   mailer("chobisa.henit@gmail.com", "Sending html", htmlString);
+// });
 database();
 
 
