@@ -19,7 +19,6 @@ MemberSchema.methods.approveMember = async function(){
 
 MemberSchema.methods.addTeam = async function(teamID){
   this.teamID = teamID;
-  await this.save();
 }
 
 const Member = mongoose.model("Member", MemberSchema);
