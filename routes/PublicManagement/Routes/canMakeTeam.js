@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
   const member = Member.findOne({'User[_id]' : userID});
 
   if (member != null){
-    res.send(false);
+    res.send(true);
   }
   else {
-    res.send(true);
+    res.send(false);
   }
 
 });
