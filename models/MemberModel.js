@@ -4,7 +4,7 @@ const MemberSchema = mongoose.Schema({
   User : {type : mongoose.Schema.Types.ObjectId, ref : 'User'},
   isLeader : false,
   isApproved : false,
-  taskID : {type : mongoose.Schema.Types.ObjectId, ref : ""}
+  teamID : {type : mongoose.Schema.Types.ObjectId, ref : "Team"}
 }, {collection : "Member"});
 
 MemberSchema.methods.makeLeader = function(){
