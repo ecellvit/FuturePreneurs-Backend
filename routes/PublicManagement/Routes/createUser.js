@@ -3,13 +3,13 @@ const User = require('../../../models/UserModel');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const { email, name, photoURL } = req.body;
+    const { email, name, photoURL, collegeName, yearOfGraduation } = req.body;
   var user = await User.findOne({email : email});
   if (user != null){
-    res.sendStatus(404);
+    res.json(user);
   }
   else {
-    user = new User({email, name, photoURL});
+      user = new User({email, name, photoURL, collegeName, yearOfGraduation});
     await user.save();
     res.json(user);
   }

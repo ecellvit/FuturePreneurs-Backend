@@ -13,7 +13,7 @@ router.use('/approveMember', require('./Routes/approveMember'));
 router.use('/getTeamById', require('./Routes/getTeamById'));
 router.use('/getTeamByName', require('./Routes/getTeamByName'));
 router.use('/getUserTeam', require('./Routes/getUserTeam'));
-router.use('/hasTeam', require('./Routes/canMakeTeam'));
+router.use('/hasTeam', require('./Routes/hasTeam'));
 
 
 module.exports = router;
