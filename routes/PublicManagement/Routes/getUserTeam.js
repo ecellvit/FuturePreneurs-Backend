@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
   const parts = url.parse(req.url, true);
   const query = parts.query;
   const userID = query.userID;
-  const member = await Member.findOne({'User[_id]' : userID});
+  const user = await User.findById(userID);
+  const member = await Member.findOne({ User : user });
   const team = await Team.findById(member.teamID).populate('Leader Members');
   res.json(team);
 })
