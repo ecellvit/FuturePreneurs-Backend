@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
 const http = require("http");
-const PORT = const port = process.env.PORT || 2000;
+const port = process.env.PORT || 2000;
 const database = require("./config/database");
 const server = http.createServer(app);
 const mailer = require("./config/mailer");
@@ -22,4 +22,4 @@ app.use(express.json());
 app.use('/api/public', require("./routes/PublicManagement/public"));
 app.use(require('./SocketArchitecture/Websockets')(io));
 
-server.listen(PORT, () => console.log('Server running on port 2000'));
+server.listen(port, () => console.log('Server running on port 2000'));
