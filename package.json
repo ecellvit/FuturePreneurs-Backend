@@ -2,7 +2,10 @@
   "name": "futurepreneurs-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app",
+  "main": "app.js",
+  "engines": {
+    "node": "15.14.0"
+  }
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
