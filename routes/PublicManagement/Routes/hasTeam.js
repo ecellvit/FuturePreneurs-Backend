@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
   const userID = query.userID;
   const user = await User.findById(userID);
   const member = await Member.findOne({ User : user});
-  console.log(member);
   if (member != null){
     res.send(true);
   }
