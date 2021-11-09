@@ -2,7 +2,7 @@
   "name": "futurepreneurs-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app",
   "engines": {
     "node": "15.14.0"
   },
