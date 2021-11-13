@@ -36,7 +36,7 @@ module.exports = function(io){
               });
 
               socket.on('message', (data) => {
-                io.to(user.room).emit('recieveMessage', data);
+                io.to(user.room).broadcast.emit('recieveMessage', data);
               })
 
     });
