@@ -9,7 +9,9 @@ const database = require("./config/database");
 const server = http.createServer(app);
 const mailer = require("./config/mailer");
 const fs = require('fs');
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {cors: {
+    origin: '*',
+  }});
 
 // fs.readFile('./test.html', (err, html) => {
 //   var htmlString = html.toString();
