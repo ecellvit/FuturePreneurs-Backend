@@ -4,7 +4,10 @@ const TeamSchema = mongoose.Schema({
   TeamName : String,
   Leader : {type : mongoose.Schema.Types.ObjectId, ref : "Member"},
   Members : [{type : mongoose.Schema.Types.ObjectId, ref : "Member"}],
-  Points : 0,
+    RoundOnePoints : 0,
+    RoundTwoPoints : 0,
+    canAttemptRoundOne : Boolean,
+    canAttemptRoundTwo : Boolean,
 },  {collection : "Teams"});
 
 TeamSchema.methods.addMember = async function(memberID, isLeader){
@@ -16,4 +19,4 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
 };
 
 const team = mongoose.model("Team", TeamSchema);
-module.exports = team;
+module.exports = team; 
