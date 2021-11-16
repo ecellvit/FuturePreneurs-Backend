@@ -18,10 +18,11 @@ var io = require('socket.io')(server, {cors: {
 //   mailer("palanikannan.m2020@vitstudent.ac.in", "FuturePreneurs", htmlString);
 // });
 
-database();
+database(); 
 app.use(cors());
 app.use(express.json());
 app.use('/api/public', require("./routes/PublicManagement/public"));
+app.use('/api/RoundOne', require('./routes/RoundOne/RoundOne'));
 app.use(require('./SocketArchitecture/Websockets')(io));
 
 server.listen(port, () => console.log('Server running on port 2000'));
