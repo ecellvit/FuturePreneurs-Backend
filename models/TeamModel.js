@@ -18,5 +18,17 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
   await this.save();
 };
 
+TeamSchema.methods.addPoints = async function(numberOfAttempts){
+    if (numberOfAttempts == 1){
+        this.RoundOnePoints = this.RoundOnePoints + 10;
+    }
+    else if (numberOfAttempts == 2){
+        this.RoundOnePoints = this.RoundOnePoints + 5;
+    }
+    else if (numberOfAttempts == 3){
+        this.RoundOnePoints = this.RoundOnePoints + 1;
+    }
+}
+
 const team = mongoose.model("Team", TeamSchema);
 module.exports = team; 

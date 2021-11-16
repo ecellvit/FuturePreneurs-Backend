@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const ZoneModel = mongoose.Schema({
-  hasElement : Boolean,
-  Element : String
+    index : String,
+  option : String
 });
 
 const Zone = mongoose.model("Zone", ZoneModel);
