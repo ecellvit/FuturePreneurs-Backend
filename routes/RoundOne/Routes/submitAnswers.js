@@ -10,18 +10,10 @@ router.post("/", async (req, res) => {
     const question = await Question.findById(questionID);
     const corrEnvId = question.correctEnvironment;
     const correctEnvironment = await Environment.findById(corrEnvId);
-    const isAnswerCorrect = correctEnvironment.compareEnvironment(resonseEnvironment);
+    const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
+    const team = await Team.findById(teamID);
     if (isAnswerCorrect == true){
-        const team = await Team.findById(teamID);
-        if (attempts === 1){
-            team.addPoints(10);
-        }
-        else if(attempts === 2){
-            team.addPoints(5);
-        }
-        else if (attempts === 3){
-            team.addPoints(1);
-        }
+        await team.addPoints(attempts);
     }
     await team.save();
     res.json({"isCorrect" : isAnswerCorrect, "currentPoints" : team.RoundOnePoints});
