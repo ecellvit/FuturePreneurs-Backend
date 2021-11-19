@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Team = require('../../../models/TeamModel');
 const Member = require('../../../models/MemberModel');
+const User = require('../../../models/UserModel');
 const url = require('url');
 
 router.get('/', async (req, res) => {
