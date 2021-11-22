@@ -17,14 +17,20 @@ router.post("/", async (req, res) => {
         }
     }
     if (isAttemptedPreviously == false){
-        team.RoundOneAttemptedQuestions.push(questionID);
+        
         const question = await Question.findById(questionID);
         const corrEnvId = question.correctEnvironment;
         const correctEnvironment = await Environment.findById(corrEnvId);
         const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
     
         if (isAnswerCorrect == true){
+            team.RoundOneAttemptedQuestions.push(questionID);
             await team.addPoints(attempts);
+        }
+        else {
+            if (attempts == 3){
+                team.RoundOneAttemptedQuestions.push(questionID);
+            }
         }
         await team.save();
         res.json({"isCorrect" : isAnswerCorrect, "currentPoints" : team.RoundOnePoints});
