@@ -7,16 +7,33 @@ const Team = require("../../../models/TeamModel");
 
 router.post("/", async (req, res) => {
     const { questionID, teamID, attempts ,responseEnvironment }  = req.body;
-    const question = await Question.findById(questionID);
-    const corrEnvId = question.correctEnvironment;
-    const correctEnvironment = await Environment.findById(corrEnvId);
-    const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
     const team = await Team.findById(teamID);
-    if (isAnswerCorrect == true){
-        await team.addPoints(attempts);
+    const r1AQ = team.RoundOneAttemptedQuestions
+    var isAttemptedPreviously = false;
+    for (i in r1AQ){
+        if (r1AQ[i] == questionID){
+            isAttemptedPreviously = true;
+            break;
+        }
     }
-    await team.save();
-    res.json({"isCorrect" : isAnswerCorrect, "currentPoints" : team.RoundOnePoints});
+    if (isAttemptedPreviously == false){
+        team.RoundOneAttemptedQuestions.push(questionID);
+        const question = await Question.findById(questionID);
+        const corrEnvId = question.correctEnvironment;
+        const correctEnvironment = await Environment.findById(corrEnvId);
+        const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
+    
+        if (isAnswerCorrect == true){
+            await team.addPoints(attempts);
+        }
+        await team.save();
+        res.json({"isCorrect" : isAnswerCorrect, "currentPoints" : team.RoundOnePoints});
+    }
+    else {
+        res.sendStatus(400)
+    }
+    
+    
 
 });
 
