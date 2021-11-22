@@ -8,6 +8,8 @@ const TeamSchema = mongoose.Schema({
     RoundTwoPoints : 0,
     canAttemptRoundOne : Boolean,
     canAttemptRoundTwo : Boolean,
+    RoundOneAttemptedQuestions : [{type : mongoose.Schema.Types.ObjectId, ref : "RoundOneQuestion"}],
+    RoundTwoAttemptedQuestions : [mongoose.Schema.Types.ObjectId]
 },  {collection : "Teams"});
 
 TeamSchema.methods.addMember = async function(memberID, isLeader){
