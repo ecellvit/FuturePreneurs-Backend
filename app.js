@@ -22,6 +22,7 @@ database();
 app.use(cors());
 app.use(express.json());
 app.use('/api/public', require("./routes/PublicManagement/public"));
+app.use('/api/voice/token', require('./routes/token'));
 app.use('/api/RoundOne', require('./routes/RoundOne/RoundOne'));
 app.use('/api/management', require('./routes/Management/management'));
 app.use(require('./SocketArchitecture/Websockets')(io));
