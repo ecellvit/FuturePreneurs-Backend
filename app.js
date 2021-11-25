@@ -25,6 +25,7 @@ app.use('/api/public', require("./routes/PublicManagement/public"));
 app.use('/api/voice/token', require('./routes/token'));
 app.use('/api/RoundOne', require('./routes/RoundOne/RoundOne'));
 app.use('/api/management', require('./routes/Management/management'));
+app.use('/api/roundTwo', require('./routes/RoundTwo/RoundTwo'));
 app.use(require('./SocketArchitecture/Websockets')(io));
 
 server.listen(port, () => console.log('Server running on port 2000'));
