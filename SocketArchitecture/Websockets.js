@@ -44,6 +44,10 @@ module.exports = function(io){
                 socket.broadcast.to(user.room).emit('change', data);
               });
 
+              socket.on("update1", (id) => {
+                socket.broadcast.to(user.room).emit("change1", id);
+              });
+
               socket.on('message', (data) => {
                 io.to(user.room).broadcast.emit('recieveMessage', data);
               })
