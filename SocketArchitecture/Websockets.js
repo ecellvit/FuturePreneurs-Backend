@@ -27,6 +27,10 @@ module.exports = function(io){
 
             socket.on('handdown', (data) => {
               socket.to(user.room).emit('handclose', {"room" : user.room});
+            });
+
+            socket.on('nextQuestion', (data) => {
+              socket.broadcast.to(user.room).emit('goNext', data);
             })
 
             socket.on('disconnect', () => {
