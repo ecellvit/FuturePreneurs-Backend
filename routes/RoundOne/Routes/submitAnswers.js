@@ -24,11 +24,17 @@ router.post("/", async (req, res) => {
         const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
     
         if (isAnswerCorrect == true){
+            if (team.RoundOneAttemptedQuestions.length == 5){
+                team.RoundOneAttempted = true;
+            }
             team.RoundOneAttemptedQuestions.push(questionID);
             await team.addPoints(attempts);
         }
         else {
             if (attempts == 3){
+                if (team.RoundOneAttemptedQuestions.length == 5){
+                    team.RoundOneAttempted = true;
+                }
                 team.RoundOneAttemptedQuestions.push(questionID);
             }
         }
