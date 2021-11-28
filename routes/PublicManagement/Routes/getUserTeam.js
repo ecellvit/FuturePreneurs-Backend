@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   console.log(member);
   if (member == null){
     console.log("Null Member");
-    res.json(400);
+    res.sendStatus(400);
   }
   else {
     const team = await Team.findById(member.teamID).populate('Leader Members');
