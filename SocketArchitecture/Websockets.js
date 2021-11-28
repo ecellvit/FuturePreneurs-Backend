@@ -31,7 +31,22 @@ module.exports = function(io){
 
             socket.on('nextQuestion', (data) => {
               socket.broadcast.to(user.room).emit('goNext', data);
+            });
+
+            socket.on('round1', (data) => {
+              socket.broadcast.to(user.room).emit('roundOneCompletion', user.room)
+            });
+
+            socket.on('round2', (data) => {
+              socket.broadcast.to(user.room).emit(
+                'roundTwoCompletion', user.room
+              )
             })
+
+
+            socket.on("attempts", (data) => {
+              socket.broadcast.to(user.room).emit("receivedAttempts", data);
+            });
 
             socket.on('disconnect', () => {
                 const user = userLeave(socket.id);
