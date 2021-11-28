@@ -17,11 +17,18 @@ var io = require('socket.io')(server, {cors: {
 //   var htmlString = html.toString();
 //   mailer("palanikannan.m2020@vitstudent.ac.in", "FuturePreneurs", htmlString);
 // });
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'example.com');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
 
+  next();
+}
 database(); 
 app.use(cors(
   "*"
 ));
+app.use(allowCrossDomain);
 app.use(express.json());
 app.use('/api/public', require("./routes/PublicManagement/public"));
 app.use('/api/voice/token', require('./routes/token'));
