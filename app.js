@@ -8,7 +8,6 @@ const port = process.env.PORT || 2000;
 const database = require("./config/database");
 const server = http.createServer(app);
 const mailer = require("./config/mailer");
-const fs = require('fs');
 var io = require('socket.io')(server, {cors: {
     origin: '*',
     methods: ["GET", "POST", "PUT"]
@@ -20,7 +19,9 @@ var io = require('socket.io')(server, {cors: {
 // });
 
 database(); 
-app.use(cors());
+app.use(cors(
+  "*"
+));
 app.use(express.json());
 app.use('/api/public', require("./routes/PublicManagement/public"));
 app.use('/api/voice/token', require('./routes/token'));
