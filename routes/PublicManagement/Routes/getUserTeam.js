@@ -11,8 +11,15 @@ router.get('/', async (req, res) => {
   const userID = query.userID;
   const user = await User.findById(userID);
   const member = await Member.findOne({ User : user });
-  const team = await Team.findById(member.teamID).populate('Leader Members');
-  res.json(team);
+  if (member == null){
+    console.log("Null Member");
+    res.json(400);
+  }
+  else {
+    const team = await Team.findById(member.teamID).populate('Leader Members');
+    res.json(team);
+  }
+  
 })
 
 module.exports = router;
