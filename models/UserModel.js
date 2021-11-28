@@ -7,5 +7,10 @@ const UserSchema = mongoose.Schema({
     collegeName : String,
     yearOfGraduation : String
 }, {collection : "Users"});
+
+UserSchema.methods.updatePhoto = async function(photoURL){
+  this.photoURL = photoURL
+}
+
 const User = mongoose.model("User", UserSchema);
 module.exports = User;
