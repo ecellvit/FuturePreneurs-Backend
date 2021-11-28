@@ -43,7 +43,6 @@ module.exports = function(io){
               )
             })
 
-
             socket.on("attempts", (data) => {
               socket.broadcast.to(user.room).emit("receivedAttempts", data);
             });
