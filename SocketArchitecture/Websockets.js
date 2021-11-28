@@ -34,12 +34,12 @@ module.exports = function(io){
             });
 
             socket.on('round1', (data) => {
-              socket.broadcast.to(user.room).emit('roundOneCompletion', user.room)
+              socket.broadcast.to(user.room).emit('roundOneCompletion', data)
             });
 
             socket.on('round2', (data) => {
               socket.broadcast.to(user.room).emit(
-                'roundTwoCompletion', user.room
+                'roundTwoCompletion', data
               )
             })
 
