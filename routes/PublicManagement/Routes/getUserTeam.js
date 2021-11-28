@@ -9,8 +9,10 @@ router.get('/', async (req, res) => {
   const parts = url.parse(req.url, true);
   const query = parts.query;
   const userID = query.userID;
+  if (userID == null){
+    res.send(400);
+  }
   const member = await Member.findOne({ "User._id" : userID});
-  
   console.log(member);
   if (member == null){
     console.log("Null Member");
