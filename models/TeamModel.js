@@ -18,8 +18,8 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
     this.Leader = memberID;
   }
   this.Members.push(memberID);
-  await this.save();
 };
+
 
 TeamSchema.methods.addPoints = async function(numberOfAttempts){
     if (numberOfAttempts == 1){

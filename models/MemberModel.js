@@ -22,4 +22,5 @@ MemberSchema.methods.addTeam = async function(teamID){
 }
 
 const Member = mongoose.model("Member", MemberSchema);
+
 module.exports = Member;

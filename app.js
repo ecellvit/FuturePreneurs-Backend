@@ -11,6 +11,7 @@ const mailer = require("./config/mailer");
 const fs = require('fs');
 var io = require('socket.io')(server, {cors: {
     origin: '*',
+    methods: ["GET", "POST", "PUT"]
   }});
 
 // fs.readFile('./test.html', (err, html) => {
@@ -27,5 +28,7 @@ app.use('/api/RoundOne', require('./routes/RoundOne/RoundOne'));
 app.use('/api/management', require('./routes/Management/management'));
 app.use('/api/roundTwo', require('./routes/RoundTwo/RoundTwo'));
 app.use(require('./SocketArchitecture/Websockets')(io));
+// app.use('/add3', require('./addData'));
+app.use('/add4', require('./add4'));
 
 server.listen(port, () => console.log('Server running on port 2000'));
