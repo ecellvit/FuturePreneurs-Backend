@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   const query = parts.query;
   const userID = query.userID;
   if (userID == null){
-    res.send(400);
+    res.sendStatus(400);
   }
   const member = await Member.findOne({ "User._id" : userID});
   console.log(member);
