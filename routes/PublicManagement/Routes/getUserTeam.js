@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Team = require('../../../models/TeamModel');
 const Member = require('../../../models/MemberModel');
-const User = require('../../../models/UserModel');
 const url = require('url');
 
-router.get('/', async (req, res) => {
-  const parts = url.parse(req.url, true);
-  const query = parts.query;
-  const userID = query.userID;
+router.post('/', async (req, res) => {
+  const {userID} = req.body
   if (userID == null){
     res.sendStatus(400);
   }
