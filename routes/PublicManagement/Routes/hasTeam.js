@@ -3,10 +3,10 @@ const Member = require('../../../models/MemberModel');
 const User = require('../../../models/UserModel');
 const router = express.Router();
 const url = require('url');
-const mongoose = require('mongoose');
+const ObjectID = require('mongoose').Types.ObjectId;
 router.post('/', async (req, res) => {
   const { userID } = req.body;
-  if (userID == ""){
+  if (!ObjectID.isValid(userID)){
     res.sendStatus(400);
   }
   const user = await User.findById(userID);
