@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
   if (!ObjectID.isValid(userID)){
     res.sendStatus(400);
   }
-  const member = await Member.findOne({ "User._id" : userID});
+  else {
+    const member = await Member.findOne({ "User._id" : userID});
   console.log(member);
   if (member == null){
     console.log("Null Member");
@@ -19,6 +20,8 @@ router.post('/', async (req, res) => {
   else {
     const team = await Team.findById(member.teamID).populate('Leader Members');
     res.json(team);
+  }
+
   }
 });
 
