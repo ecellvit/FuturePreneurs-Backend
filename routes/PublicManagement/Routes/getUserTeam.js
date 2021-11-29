@@ -3,10 +3,11 @@ const router = express.Router();
 const Team = require('../../../models/TeamModel');
 const Member = require('../../../models/MemberModel');
 const url = require('url');
+const ObjectID = require('mongoose').Types.ObjectId;
 
 router.post('/', async (req, res) => {
   const {userID} = req.body
-  if (userID == null){
+  if (!ObjectID.isValid(userID)){
     res.sendStatus(400);
   }
   const member = await Member.findOne({ "User._id" : userID});
@@ -19,7 +20,6 @@ router.post('/', async (req, res) => {
     const team = await Team.findById(member.teamID).populate('Leader Members');
     res.json(team);
   }
-  
-})
+});
 
 module.exports = router;
