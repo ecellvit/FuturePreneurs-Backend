@@ -9,7 +9,8 @@ router.post('/', async (req, res) => {
   if (!ObjectID.isValid(userID)){
     res.sendStatus(400);
   }
-  const user = await User.findById(userID);
+  else {
+    const user = await User.findById(userID);
   const member = await Member.findOne({ User : user});
   if (member != null){
     res.send(true);
@@ -17,6 +18,9 @@ router.post('/', async (req, res) => {
   else {
     res.send(false);
   }
+
+  }
+  
 
 });
 
