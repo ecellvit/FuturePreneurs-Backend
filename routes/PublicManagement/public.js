@@ -8,6 +8,7 @@ router.use('/addMember', require('./Routes/addMember'));
 router.use('/getAllTeams', require('./Routes/getAllTeams'));
 router.use('/removeTeamMember', require('./Routes/removeTeamMember'));
 router.use('/approveMember', require('./Routes/approveMember'));
+router.use('/shiftLead', require('./Routes/shiftLeader'));
 
 
 router.use('/getTeamById', require('./Routes/getTeamById'));

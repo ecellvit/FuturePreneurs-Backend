@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Environment = require("./Environment");
 
 const TeamSchema = mongoose.Schema({
   TeamName : String,
@@ -11,6 +12,9 @@ const TeamSchema = mongoose.Schema({
     RoundOneAttemptedQuestions : [{type : mongoose.Schema.Types.ObjectId, ref : "RoundOneQuestion"}],
     RoundTwoAttempted : Boolean,
     RoundOneAttempted : Boolean,
+    RoundTwoResponse : Environment.schema,
+    RoundOneTimeLeft : {type : Number, default : 900},
+    RoundTwoTimeLeft : {type : Number, default : 900},
 },  {collection : "Teams"});
 
 TeamSchema.methods.addMember = async function(memberID, isLeader){
@@ -19,6 +23,14 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
   }
   this.Members.push(memberID);
 };
+
+TeamSchema.methods.updateRoundOneTime = async function(time){
+  this.RoundOneTimeLeft = time;
+}
+
+TeamSchema.methods.updateRoundTwoTime = async function(time){
+  this.RoundTwoTimeLeft = time;
+}
 
 
 TeamSchema.methods.addPoints = async function(numberOfAttempts){
