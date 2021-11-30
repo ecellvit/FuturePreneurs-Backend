@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
         const team = await Team.findById(teamID);
         team.RoundOneAttempted = true;
         await team.save();
-        res.sendStatus(200);
+        res.send("true");
     }
     else {
         res.sendStatus(400);
