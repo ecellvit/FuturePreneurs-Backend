@@ -6,10 +6,8 @@ const Member = require('./models/MemberModel');
 
 router.post('/', async  (req, res) => {
     const data = req.body;
-
     data.forEach( async (element) => {
         const {teamName, TeamLeaderName, TeamLeaderEmail, Member1Name, Member1Email, Member2Name, Member2Email, Member3Name, Member3Email, totalPeople} = element;
-        
         const team = Team({TeamName : teamName,  RoundTwoAttempted : false, RoundOneAttempted : false, Members : [], leader : {}, RoundOnePoints : 0, RoundTwoPoints : 0});
         const leader = User({email : TeamLeaderEmail, name : TeamLeaderName, photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlR3hMw_3daUL3Uhr5Y3uJh_kMaYzyqQhhPA&usqp=CAU"});
         const leaderM = Member({User : leader, isLeader : true, isApproved : true, teamID : team});
@@ -17,8 +15,6 @@ router.post('/', async  (req, res) => {
         console.log(TeamLeaderName);
         await leader.save();
         await leaderM.save();
-        
-
         for (j = 0; j < totalPeople - 1; j++){
             var memberName;
             var memberEmail;
@@ -40,7 +36,7 @@ router.post('/', async  (req, res) => {
             await user.save();
             await member.save();
             console.log(memberName);
-            console.log(" ");
+            
         }
         await team.save();
     });

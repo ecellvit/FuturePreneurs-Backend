@@ -1,4 +1,5 @@
 const express = require('express');
+const Environment = require('../../../models/Environment');
 const router = express.Router();
 const RoundTwo = require('../../../models/RoundTwoModel');
 const Team = require('../../../models/TeamModel');
@@ -11,11 +12,13 @@ router.use('/', async (req, res) => {
     }
     else {
         const roundTwo = await RoundTwo.find();
-        var score = await roundTwo[0].checkSubmission(Zones);
-        team.RoundTwoPoints = score;
+        const submission = Environment({Zones})
+        // var score = await roundTwo[0].checkSubmission(Zones);
+        // team.RoundTwoPoints = score;
         team.RoundTwoAttempted = true;
+        team.RoundTwoResponse = submission;
         await team.save();
-        res.json({score});
+        res.json("done");
     }
 });
 
