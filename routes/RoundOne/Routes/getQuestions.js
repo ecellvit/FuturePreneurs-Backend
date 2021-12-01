@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         console.log(currentTime.toISOString());
         console.log(date.toISOString());
         team.RoundOneTimeLeft = date;
-        // await team.save();
+        await team.save();
     }
 
     const question = await roundOneQuestion.find().limit(1).skip(parseInt(questionNumber) - 1);
