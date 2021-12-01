@@ -29,13 +29,13 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
 
 
 TeamSchema.methods.addPoints = async function(numberOfAttempts){
-    if (numberOfAttempts == 1){
+    if (numberOfAttempts == 0){
         this.RoundOnePoints = this.RoundOnePoints + 10;
     }
-    else if (numberOfAttempts == 2){
+    else if (numberOfAttempts == 1){
         this.RoundOnePoints = this.RoundOnePoints + 5;
     }
-    else if (numberOfAttempts == 3){
+    else if (numberOfAttempts == 2){
         this.RoundOnePoints = this.RoundOnePoints + 1;
     }
 }

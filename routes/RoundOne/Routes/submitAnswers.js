@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
                 team.RoundOneAttempted = true;
             }
             team.RoundOneAttemptedQuestions.push(questionID);
-            await team.addPoints(attempts);
+            await team.addPoints(team.AttemptsDone);
         }
         else {
             team.AttemptsDone = team.AttemptsDone + 1;
