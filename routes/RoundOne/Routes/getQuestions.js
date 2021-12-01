@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 
     console.log(team.RoundOneTimeLeft);
     const question = await roundOneQuestion.find().limit(1).skip(parseInt(questionNumber) - 1);
-    res.json({question : question[0],attemptsLeft : this.AttemptsLeft ,timeStamp : team.RoundOneTimeLeft});
+    res.json({question : question[0],attemptsLeft : team.AttemptsLeft ,timeStamp : team.RoundOneTimeLeft});
 });
 
 module.exports = router;
