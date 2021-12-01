@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
         const isAnswerCorrect = await correctEnvironment.compareEnvironment(responseEnvironment);
     
         if (isAnswerCorrect == true){
+            team.AtteptsLeft = 3;
             if (team.RoundOneAttemptedQuestions.length == 5){
                 team.RoundOneAttempted = true;
             }
@@ -31,7 +32,9 @@ router.post("/", async (req, res) => {
             await team.addPoints(attempts);
         }
         else {
+            team.AtteptsLeft = attempts;
             if (attempts == 3){
+                team.AtteptsLeft = 3;
                 if (team.RoundOneAttemptedQuestions.length == 5){
                     team.RoundOneAttempted = true;
                 }
