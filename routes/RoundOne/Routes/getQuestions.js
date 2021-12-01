@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         const currentTime = Math.floor(Date.now()/1000) + 905;
         console.log(Date.now()/1000);
         console.log(currentTime);
-        team.RoundOneTimeLeft = currentTime;
+        team.RoundOneTimeLeft = currentTime.toString();
         await team.save();
     }
 
