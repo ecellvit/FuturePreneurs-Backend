@@ -60,6 +60,15 @@ app.get('/teamData', async (req, res) => {
   res.json(teams);
 });
 
+app.post('/set', async (req, res) => {
+  const event = await Event.findById(id);
+  const { time } = req.body;
+  const timeOfEvent = new Date(time);
+  event.timeOfEvent = timeOfEvent;
+  await event.save();
+  res.json(event);
+})
+
 
 app.get('/', async (req, res) => {
   const event = await Event.findById(id);
