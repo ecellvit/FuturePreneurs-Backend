@@ -5,12 +5,14 @@ dotenv.config();
 const cors = require('cors');
 const http = require("http");
 const fastcsv = require('fast-csv');
+const URL = require('url');
 const PORT = process.env.PORT || 2000;
 const database = require("./config/database");
 const server = http.createServer(app);
 const mailer = require("./config/mailer");
 const Event = require('./models/Event');
 const Json2csvParser = require("json2csv").Parser;
+const ObjectID = require('mongoose').Types.ObjectId;
 const ObjectsToCsv = require('objects-to-csv');
 const team = require("./models/TeamModel");
 var io = require('socket.io')(server, {cors: {
@@ -19,6 +21,7 @@ var io = require('socket.io')(server, {cors: {
   }});
 
   const fs = require("fs");
+const Team = require("./models/TeamModel");
   const ws = fs.createWriteStream("teams.csv");
 
   var id = "61a6662eed5a1cee819c3639";
@@ -71,8 +74,17 @@ app.post('/set', async (req, res) => {
 
 
 app.get('/', async (req, res) => {
-  const event = await Event.findById(id);
-  res.json(event);
+  const query = URL.parse(req.url, true).query;
+  const teamID = query.teamID;
+  if (!ObjectID.isValid(teamID)){
+    res.sendStatus(400);
+  }
+  else {
+    const team = await Team.findById(teamID);
+    const event = await Event.findById(id);
+    res.json({event : event, hasCompletedRoundOne : team.RoundOneAttempted});
+  }
+  
 });
 
 
