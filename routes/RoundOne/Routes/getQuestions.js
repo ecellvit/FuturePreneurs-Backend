@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
     const teamID = query.teamID;
     const team = await Team.findById(teamID);
     if (questionNumber == 1 && team.RoundOneStarted == false){
-    
         const currentTime = new Date();
         const newTime = currentTime.getTime() + 60*1000*15;
         const date = new Date(newTime);
@@ -20,12 +19,11 @@ router.get('/', async (req, res) => {
         team.RoundOneTimeLeft = date;
         team.RoundOneStarted = true;
         await team.save();
-
     }
 
     console.log(team.RoundOneTimeLeft);
     const question = await roundOneQuestion.find().limit(1).skip(parseInt(questionNumber) - 1);
-    res.json({question : question[0], timeStamp : team.RoundOneTimeLeft});
+    res.json({question : question[0],attemptsLeft : this.AttemptsLeft ,timeStamp : team.RoundOneTimeLeft});
 });
 
 module.exports = router;
