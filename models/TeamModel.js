@@ -13,7 +13,7 @@ const TeamSchema = mongoose.Schema({
     RoundTwoAttempted : Boolean,
     RoundOneAttempted : Boolean,
     RoundTwoResponse : Environment.schema,
-    RoundOneTimeLeft : {type : Number, default : 900},
+    RoundOneTimeLeft : {type : Date},
     RoundTwoTimeLeft : {type : Number, default : 900},
 },  {collection : "Teams"});
 
@@ -24,13 +24,6 @@ TeamSchema.methods.addMember = async function(memberID, isLeader){
   this.Members.push(memberID);
 };
 
-TeamSchema.methods.updateRoundOneTime = async function(time){
-  this.RoundOneTimeLeft = time;
-}
-
-TeamSchema.methods.updateRoundTwoTime = async function(time){
-  this.RoundTwoTimeLeft = time;
-}
 
 
 TeamSchema.methods.addPoints = async function(numberOfAttempts){
@@ -45,5 +38,5 @@ TeamSchema.methods.addPoints = async function(numberOfAttempts){
     }
 }
 
-const team = mongoose.model("Team", TeamSchema);
-module.exports = team; 
+const Team = mongoose.model("Team", TeamSchema);
+module.exports = Team; 
