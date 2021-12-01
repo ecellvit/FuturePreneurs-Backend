@@ -15,8 +15,9 @@ const TeamSchema = mongoose.Schema({
     RoundTwoResponse : Environment.schema,
     AttemptsDone : {type : Number, default : 0},
     RoundOneStarted : {type : Boolean, default : false},
+    RoundTwoStarted : {type : Boolean, default : false},
     RoundOneTimeLeft : {type : Date},
-    RoundTwoTimeLeft : {type : Number, default : 900},
+    RoundTwoTimeLeft : {type : Date},
 },  {collection : "Teams"});
 
 TeamSchema.methods.addMember = async function(memberID, isLeader){

@@ -6,7 +6,7 @@ const Question = require("../../../models/RoundOneQuestion");
 const Team = require("../../../models/TeamModel");
 
 router.post("/", async (req, res) => {
-    const { questionID, teamID, attempts ,responseEnvironment }  = req.body;
+    const { questionID, teamID,responseEnvironment }  = req.body;
     const team = await Team.findById(teamID);
     const r1AQ = team.RoundOneAttemptedQuestions
     var isAttemptedPreviously = false;
