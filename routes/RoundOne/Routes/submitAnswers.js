@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
             await team.addPoints(attempts);
         }
         else {
-            team.AtteptsLeft = attempts;
+            team.AttemptsLeft = attempts;
             if (attempts == 3){
                 team.AtteptsLeft = 3;
                 if (team.RoundOneAttemptedQuestions.length == 5){
