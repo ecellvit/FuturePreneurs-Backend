@@ -13,7 +13,7 @@ const TeamSchema = mongoose.Schema({
     RoundTwoAttempted : Boolean,
     RoundOneAttempted : Boolean,
     RoundTwoResponse : Environment.schema,
-    RoundOneTimeLeft : {type : Date},
+    RoundOneTimeLeft : {type : String},
     RoundTwoTimeLeft : {type : Number, default : 900},
 },  {collection : "Teams"});
 
