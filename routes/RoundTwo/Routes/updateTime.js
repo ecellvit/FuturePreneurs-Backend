@@ -14,7 +14,7 @@ router.get('/', async(req, res) => {
     }
     else{
         const team = await Team.findById(teamID);
-        if (team.RoundTwoStarted == false){
+        if (team.RoundTwoStarted == false || team.RoundTwoStarted == null){
             const currentTime = new Date();
             const newTime = currentTime.getTime() + 60*1000*15;
             const date = new Date(newTime);
