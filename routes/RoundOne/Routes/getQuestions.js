@@ -11,11 +11,17 @@ router.get('/', async (req, res) => {
     const teamID = query.teamID;
     const team = await Team.findById(teamID);
     if (questionNumber == 1){
-        const currentTime = Math.floor(Date.now()/1000) + 905;
-        console.log(Date.now()/1000);
-        console.log(currentTime);
-        team.RoundOneTimeLeft = currentTime.toString();
-        await team.save();
+        // const time = Date.now()
+        // const currentTime = (Math.floor(new Date().valueOf() + (15 * 1000)));
+        // console.log(new Date().getTime());
+        // console.log(Date(currentTime));
+        const currentTime = new Date();
+        const newTime = currentTime.getTime() + 60*1000*15;
+        const date = new Date(newTime);
+        console.log(currentTime.toISOString());
+        console.log(date.toISOString());
+        team.RoundOneTimeLeft = date;
+        // await team.save();
     }
 
     const question = await roundOneQuestion.find().limit(1).skip(parseInt(questionNumber) - 1);
