@@ -74,17 +74,8 @@ app.post('/set', async (req, res) => {
 
 
 app.get('/', async (req, res) => {
-  const query = URL.parse(req.url, true).query;
-  const teamID = query.teamID;
-  if (!ObjectID.isValid(teamID)){
-    res.sendStatus(400);
-  }
-  else {
-    const team = await Team.findById(teamID);
     const event = await Event.findById(id);
-    res.json({event : event, hasCompletedRoundOne : team.RoundOneAttempted});
-  }
-  
+    res.json(event);
 });
 
 
