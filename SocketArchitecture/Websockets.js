@@ -41,7 +41,14 @@ module.exports = function(io){
               socket.broadcast.to(user.room).emit(
                 'roundTwoCompletion', data
               )
-            })
+            });
+            socket.on('correctAnswer', (data) => {
+              socket.broadcast.to(user.room).emit('correctAnswerAttempted', data);
+            });
+
+            socket.on('wrongAnswer', (data) => {
+              socket.broadcast.to(user.room).emit('wrongAnswerAttempted', data);
+            });
 
             socket.on("attempts", (data) => {
               socket.broadcast.to(user.room).emit("receivedAttempts", data);
